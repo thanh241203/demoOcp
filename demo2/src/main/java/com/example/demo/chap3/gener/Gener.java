@@ -1,8 +1,7 @@
 package com.example.demo.chap3.gener;
 
+
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class Gener {
 
@@ -64,12 +63,13 @@ public class Gener {
 //        list.clear();
 //        System.out.println(list.isEmpty()); // true
 //
-//        Set<Integer> set = new HashSet<>();
-//        boolean b1 = set.add(66); // true
-//        boolean b2 = set.add(10); // true
-//        boolean b3 = set.add(66); // false
-//        boolean b4 = set.add(8); // true
-//        for (Integer integer : set) System.out.print(integer + ","); // 66,8,10
+        Set<Integer> set = new HashSet<>();
+//
+        boolean b3 = set.add(66); // false
+        boolean b4 = set.add(8); // true
+        boolean b41 = set.add(null);
+        boolean b42 = set.add(null);
+        for (Integer integer : set) System.out.print(integer + ","); // 66,8,10
 //
 //        Queue<Integer> queue=new ArrayDeque<>();
 //        queue.offer(12);
@@ -88,12 +88,48 @@ public class Gener {
 //        arrayDeque.push(14);
 //        System.out.println(arrayDeque.peek());//14
 
-        Map<String,String> map=new TreeMap<>();
-        map.put("koala", "bamboo");
-        map.put("lion", "meat");
-        map.put("giraffe", "leaf");
-        for (String key: map.keySet())
-            System.out.print(key + ","); // giraffe,koala,lion,
+//        Map<String,String> map=new TreeMap<>();
+//        map.put("koala", "bamboo");
+//        map.put("lion", "meat");
+//        map.put("giraffe", "leaf");
+//        for (String key: map.keySet())
+//            System.out.print(key + ","); // giraffe,koala,lion,
+
+//        Comparable<Duck> duckComparable = new Comparable<Duck>() {
+//            @Override
+//            public int compareTo(Duck o) {
+//                return o.getId();
+//            }
+//        };
+        Comparator<Duck> duckComparator = (d1, d2) -> {
+            int name = d1.getId() - d2.getId();
+            if (name == 0) {
+                return 0;
+            } else {
+                System.out.println("get name");
+                return name;
+            }
+        };
+
+        List<Duck> list = new ArrayList<>();
+        Duck duck1 = (new Duck("Quack", 7));
+        Duck duck2 = new Duck("Puddles", 6);
+        list.add(duck1);
+        list.add(duck2);
+        Collections.sort(list, duckComparator);
+        System.out.println(list);
+
+        Dog dog = new Dog();
+//
+//        List<String> strings = new ArrayList<>();
+//        strings.add("th");
+//        strings.add("aw");
+//        Comparator<String> c = Comparator.reverseOrder();
+//        int index = Collections.binarySearch(strings, "th", c);
+//        System.out.println(index);
+//
+//        Set<Rabit> rabits = new TreeSet<>(Comparator.comparingInt(r -> r.getId()));
+//        rabits.add(new Rabit());
 
 
     }
